@@ -94,7 +94,11 @@ func main() {
 			respText = fmt.Sprintf("%d %s назад температура была ", dataAge, alice.Plural(dataAge, "минута", "минуты", "минут"))
 			respText += fmt.Sprintf("%d %s", temperature, alice.Plural(pluralTemperature, "градус", "градуса", "градусов"))
 		} else {
-			respText = fmt.Sprintf("%d %s", temperature, alice.Plural(pluralTemperature, "градус", "градуса", "градусов"))
+			respText = ""
+			if temperature > 0 {
+				respText = "плюс "
+			}
+			respText += fmt.Sprintf("%d %s", temperature, alice.Plural(pluralTemperature, "градус", "градуса", "градусов"))
 		}
 		return resp.Text(respText).EndSession()
 	})
